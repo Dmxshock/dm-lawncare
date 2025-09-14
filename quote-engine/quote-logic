@@ -1,0 +1,50 @@
+document.getElementById("quoteForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // Collect inputs
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const suburb = document.getElementById("suburb").value.trim().toLowerCase();
+  const service = document.getElementById("service").value;
+  const date = document.getElementById("date").value;
+  const consent = document.getElementById("consent").checked;
+
+  // Basic validation
+  if (!name || !email || !suburb || !service || !date || !consent) {
+    alert("Please complete all fields and agree to the terms.");
+    return;
+  }
+
+  // Travel fee logic
+  const serviceZone = ["melton", "bacchus marsh", "caroline springs"];
+  const travelFee = serviceZone.includes(suburb) ? 0 : 25;
+
+  // Service base rates
+  const baseRates = {
+    mowing: 60,
+    bin: 30,
+    ndis: 50
+  };
+
+  const baseCost = baseRates[service] || 0;
+  const totalCost = baseCost + travelFee;
+
+  // Quote summary
+  const quoteSummary = `
+    <h2>Quote Summary</h2>
+    <p><strong>Name:</strong> ${name}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Suburb:</strong> ${suburb}</p>
+    <p><strong>Service:</strong> ${service}</p>
+    <p><strong>Preferred Date:</strong> ${date}</p>
+    <p><strong>Base Cost:</strong> $${baseCost}</p>
+    <p><strong>Travel Fee:</strong> $${travelFee}</p>
+    <p><strong>Total Quote:</strong> $${totalCost}</p>
+  `;
+
+  document.getElementById("quoteResult").innerHTML = quoteSummary;
+
+  // Optional: Send data to backend (Google Sheets, webhook, etc.)
+  // sendQuoteData({ name, email, suburb, service, date, totalCost });
+});
+
