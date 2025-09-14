@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DM Lawncare Quote Engine</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Request a Quote</h1>
+
+  <form id="quoteForm">
+    <!-- Client Info -->
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" required />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required />
+
+    <label for="suburb">Suburb:</label>
+    <input type="text" id="suburb" required />
+
+    <!-- Service Type -->
+    <label for="service">Service Type:</label>
+    <select id="service" required>
+      <option value="">Select</option>
+      <option value="mowing">Ride-On Mowing</option>
+      <option value="bin">Green Waste Bin Pickup</option>
+      <option value="ndis">NDIS Care Visit</option>
+    </select>
+
+    <!-- Booking Date -->
+    <label for="date">Preferred Date:</label>
+    <input type="date" id="date" required />
+
+    <!-- Consent -->
+    <label>
+      <input type="checkbox" id="consent" required />
+      I agree to travel fees if outside service zone and accept terms.
+    </label>
+
+    <button type="submit">Generate Quote</button>
+  </form>
+
+  <div id="quoteResult"></div>
+
+  <script src="quoteLogic.js"></script>
+</body>
+</html>
+
