@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DM Lawncare Admin Dashboard</title>
+  <link rel="stylesheet" href="admin-style.css" />
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p>Operational Control Panel – DM Ride-On Lawn Care</p>
+  </header>
+
+  <main>
+    <!-- Quote Tracker -->
+    <section id="quoteTracker">
+      <h2>Quote Tracker</h2>
+      <div id="quoteList">Loading quotes...</div>
+    </section>
+
+    <!-- Dispatch Planner -->
+    <section id="dispatchPlanner">
+      <h2>Dispatch Planner</h2>
+      <div id="dispatchCalendar">Loading dispatch slots...</div>
+    </section>
+
+    <!-- Wage & Tax Summary -->
+    <section id="wageTax">
+      <h2>Wage & Tax Summary</h2>
+      <div id="wageSummary">Calculating...</div>
+    </section>
+
+    <!-- Monitoring Alerts -->
+    <section id="monitoring">
+      <h2>Monitoring & Uptime</h2>
+      <div id="monitoringStatus">Checking system health...</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 DM Ride-On Lawn Care – Operational Integrity by Design</p>
+  </footer>
+
+  <script src="dispatchView.js"></script>
+  <script src="wageTaxModule.js"></script>
+  <script src="monitoring.js"></script>
+</body>
+</html>
