@@ -5,9 +5,13 @@ ColorManager - Loads and saves UI color preferences from JSON config.
 import json
 import os
 
-_CONFIG_DIR = os.path.join(os.path.dirname(__file__), "..", "config")
-_SETTINGS_FILE = os.path.join(_CONFIG_DIR, "settings.json")
-_DEFAULTS_FILE = os.path.join(_CONFIG_DIR, "defaults.json")
+import platformdirs
+
+_REPO_CONFIG_DIR = os.path.join(os.path.dirname(__file__), "..", "config")
+_DEFAULTS_FILE = os.path.join(_REPO_CONFIG_DIR, "defaults.json")
+
+_USER_CONFIG_DIR = platformdirs.user_config_dir("dm-lawncare")
+_SETTINGS_FILE = os.path.join(_USER_CONFIG_DIR, "settings.json")
 
 
 class ColorManager:
@@ -52,6 +56,6 @@ class ColorManager:
             return {}
 
     def _save(self) -> None:
-        os.makedirs(_CONFIG_DIR, exist_ok=True)
+        os.makedirs(_USER_CONFIG_DIR, exist_ok=True)
         with open(_SETTINGS_FILE, "w", encoding="utf-8") as fh:
             json.dump(self._settings, fh, indent=4)
