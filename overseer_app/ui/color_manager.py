@@ -4,10 +4,25 @@ ColorManager - Loads and saves UI color preferences from JSON config.
 
 import json
 import os
+import sys
 
-_CONFIG_DIR = os.path.join(os.path.dirname(__file__), "..", "config")
-_SETTINGS_FILE = os.path.join(_CONFIG_DIR, "settings.json")
-_DEFAULTS_FILE = os.path.join(_CONFIG_DIR, "defaults.json")
+_REPO_CONFIG_DIR = os.path.join(os.path.dirname(__file__), "..", "config")
+_DEFAULTS_FILE = os.path.join(_REPO_CONFIG_DIR, "defaults.json")
+
+
+def _user_settings_path() -> str:
+    """Return the OS-appropriate user-local path for settings.json."""
+    app_name = "dm-lawncare"
+    if sys.platform == "win32":
+        base = os.environ.get("APPDATA", os.path.expanduser("~"))
+    elif sys.platform == "darwin":
+        base = os.path.expanduser("~/Library/Application Support")
+    else:
+        base = os.environ.get("XDG_CONFIG_HOME", os.path.expanduser("~/.config"))
+    return os.path.join(base, app_name, "settings.json")
+
+
+_SETTINGS_FILE = _user_settings_path()
 
 
 class ColorManager:
@@ -52,6 +67,6 @@ class ColorManager:
             return {}
 
     def _save(self) -> None:
-        os.makedirs(_CONFIG_DIR, exist_ok=True)
+        os.makedirs(os.path.dirname(_SETTINGS_FILE), exist_ok=True)
         with open(_SETTINGS_FILE, "w", encoding="utf-8") as fh:
             json.dump(self._settings, fh, indent=4)
