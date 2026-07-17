@@ -5,14 +5,12 @@ Refactored from app_gui.py and enhanced with real-time clock, colour
 management, and a modular file layout.
 """
 
-import sys
 import datetime
 
 from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
+    QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QPushButton, QScrollArea, QLabel, QGridLayout, QFrame,
-    QStackedWidget, QSizePolicy, QListWidget, QListWidgetItem,
-    QMessageBox, QInputDialog
+    QStackedWidget, QListWidget, QListWidgetItem, QMessageBox
 )
 from PyQt6.QtCore import Qt, QTimer
 from PyQt6.QtGui import QFont
