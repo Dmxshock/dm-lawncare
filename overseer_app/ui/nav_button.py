@@ -52,6 +52,7 @@ class NavButton(QPushButton):
     @staticmethod
     def _brighten(hex_color: str) -> str:
         """Return a slightly brighter version of *hex_color* for hover effect."""
+        original = hex_color
         try:
             hex_color = hex_color.lstrip("#")
             r, g, b = (int(hex_color[i:i+2], 16) for i in (0, 2, 4))
@@ -60,4 +61,4 @@ class NavButton(QPushButton):
             b = min(255, b + 25)
             return f"#{r:02x}{g:02x}{b:02x}"
         except Exception:
-            return hex_color
+            return original
