@@ -14,7 +14,7 @@ def _user_settings_path() -> str:
     """Return the OS-appropriate user-local path for settings.json."""
     app_name = "dm-lawncare"
     if sys.platform == "win32":
-        base = os.environ.get("APPDATA", os.path.expanduser("~"))
+        base = os.environ.get("APPDATA", os.path.join(os.path.expanduser("~"), "AppData", "Roaming"))
     elif sys.platform == "darwin":
         base = os.path.expanduser("~/Library/Application Support")
     else:
