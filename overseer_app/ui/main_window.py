@@ -495,7 +495,7 @@ class LawnCarePortal(QMainWindow):
     def _add_task(self, text: str, button_label: str, callback) -> None:
         """Inject a TaskItemWidget row into the task list."""
         item = QListWidgetItem(self.task_list_widget)
-        widget = TaskItemWidget(text, button_label, lambda _item=item: callback(_item))
+        widget = TaskItemWidget(text, button_label, lambda _checked=False, _item=item: callback(_item))
         item.setSizeHint(widget.sizeHint())
         self.task_list_widget.addItem(item)
         self.task_list_widget.setItemWidget(item, widget)
